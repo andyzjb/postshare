@@ -17,7 +17,7 @@
 
 ## 截图
 
-![发布流程](data/app-assets-os/screenshot-weibo-flow.png)
+![发布流程](data/app-assets-os/screenshot-linux-weibo.png)
 
 ## 技术栈
 
