@@ -1,0 +1,10 @@
+node_modules/
+data/poster.jpg
+data/poster-cache/
+data/movies-cache.json
+data/post-state.json
+data/app-assets/
+data/app-assets-os/
+lib/weibo-config.mjs
+.env
+*.log

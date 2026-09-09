@@ -1,0 +1,13 @@
+{
+  "name": "weibo-poster",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "popvideos 微博每日自动发文（测试环境 .7）",
+  "scripts": {
+    "gen": "node tools/gen-daily.js",
+    "post": "node tools/post.js",
+    "dry": "node tools/dry-run.js",
+    "cron": "node tools/daily-cron.js"
+  }
+}
