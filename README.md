@@ -17,7 +17,11 @@
 
 ## 截图
 
-![发布流程](data/app-assets-os/screenshot-linux-weibo.png)
+![应用概览](data/app-assets-os/screenshot-1-overview.jpg)
+
+![分享到微博](data/app-assets-os/screenshot-2-weibo.jpg)
+
+![发布界面](data/app-assets-os/screenshot-3-phone.jpg)
 
 ## 技术栈
 
