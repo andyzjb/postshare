@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日影视海报 - 微博图文自动发布桌面客户端</title>
+<meta name="description" content="每日影视海报 - 一款运行于 Linux 桌面的影视海报自动生成工具，通过微博开放平台 API 每日定时发布图文微博。">
+<style>
+  :root {
+    --bg: #0f0f0f;
+    --card: #1a1a1a;
+    --border: #2a2a2a;
+    --text: #e8e8e8;
+    --muted: #888;
+    --accent: #ff8200;
+    --accent-dim: #cc6600;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 0;
+  }
+  .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+  header {
+    padding: 60px 0 40px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+  header h1 { font-size: 2.4em; font-weight: 700; letter-spacing: -0.02em; }
+  header .sub { color: var(--muted); font-size: 1.1em; margin-top: 8px; }
+  header .badge {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 6px 16px;
+    border-radius: 20px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.85em;
+    font-weight: 600;
+  }
+  section { padding: 48px 0; border-bottom: 1px solid var(--border); }
+  section:last-child { border-bottom: none; }
+  h2 { font-size: 1.5em; font-weight: 600; margin-bottom: 20px; }
+  h2 .emoji { margin-right: 8px; }
+  p, li { color: var(--muted); font-size: 0.95em; }
+  ul { list-style: none; padding: 0; }
+  ul li { padding: 6px 0; padding-left: 20px; position: relative; }
+  ul li::before { content: "▸"; position: absolute; left: 0; color: var(--accent); }
+  .screenshots {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+  }
+  .screenshots img {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--card);
+  }
+  .flow {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    font-family: "SF Mono", "Fira Code", monospace;
+    font-size: 0.85em;
+    color: var(--muted);
+    margin-top: 12px;
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .tags span {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 4px 12px;
+    font-size: 0.8em;
+    color: var(--muted);
+  }
+  .btn {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    padding: 12px 28px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95em;
+    transition: background 0.2s;
+  }
+  .btn:hover { background: var(--accent-dim); }
+  .btn-outline {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+    margin-left: 12px;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+  .actions { margin-top: 24px; }
+  footer {
+    text-align: center;
+    padding: 32px 0;
+    color: var(--muted);
+    font-size: 0.8em;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+  @media (max-width: 600px) {
+    header h1 { font-size: 1.8em; }
+    .screenshots { grid-template-columns: 1fr; }
+    .btn-outline { margin-left: 0; margin-top: 12px; display: inline-block; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <h1>每日影视海报</h1>
+    <p class="sub">一款运行于 Linux 桌面的影视海报自动生成工具</p>
+    <span class="badge">v1.0 · 微博开放平台客户端</span>
+  </div>
+</header>
+
+<div class="container">
+
+<section>
+  <h2><span class="emoji">📌</span>应用简介</h2>
+  <p>
+    「每日影视海报」是一款运行在 Linux 桌面环境的自动化工具，对接微博开放平台。
+    每日从热门影视中精选 9 部作品，自动生成 1080×1600 竖版海报并拼接文案，
+    通过微博 API 定时发布图文微博。
+  </p>
+</section>
+
+<section>
+  <h2><span class="emoji">⚡</span>功能特性</h2>
+  <ul>
+    <li>每日自动精选 9 部热门影视作品</li>
+    <li>自动生成 1080×1600 竖版海报（Python PIL）</li>
+    <li>自动拼接微博文案（片名、评分、类型）</li>
+    <li>通过微博开放平台 API 定时发布图文微博</li>
+    <li>发布失败自动 PushPlus 告警通知</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="emoji">📷</span>应用截图</h2>
+  <div class="screenshots">
+    <img src="https://github.com/andyzjb/postshare/raw/master/data/app-assets-os/screenshot-1-overview.jpg" alt="应用概览" loading="lazy">
+    <img src="https://github.com/andyzjb/postshare/raw/master/data/app-assets-os/screenshot-2-weibo.jpg" alt="分享到微博" loading="lazy">
+    <img src="https://github.com/andyzjb/postshare/raw/master/data/app-assets-os/screenshot-3-phone.jpg" alt="发布界面" loading="lazy">
+  </div>
+</section>
+
+<section>
+  <h2><span class="emoji">🔧</span>使用流程</h2>
+  <div class="flow">生成海报（Python PIL） → 拼文案（Node.js） → 发微博（微博API） → 完成</div>
+</section>
+
+<section>
+  <h2><span class="emoji">🛠</span>技术栈</h2>
+  <div class="tags">
+    <span>Python 3</span>
+    <span>Pillow</span>
+    <span>Node.js</span>
+    <span>微博开放平台 API</span>
+    <span>PushPlus</span>
+  </div>
+</section>
+
+<section>
+  <h2><span class="emoji">📥</span>获取 &amp; 使用</h2>
+  <p>本项目为开源桌面客户端，源码托管于 GitHub。</p>
+  <div class="actions">
+    <a href="https://github.com/andyzjb/postshare" class="btn" target="_blank">查看源码</a>
+    <a href="https://github.com/andyzjb/postshare/blob/master/README.md" class="btn btn-outline" target="_blank">使用说明 →</a>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="container">
+    <a href="https://github.com/andyzjb/postshare">andyzjb/postshare</a> · 微博开放平台桌面客户端 · 开源发布
+  </div>
+</footer>
+
+</body>
+</html>
